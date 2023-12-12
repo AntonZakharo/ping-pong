@@ -1,4 +1,5 @@
 from pygame import *
+font.init()
 window_height = 500
 window_width = 700
 window = display.set_mode((window_width,window_height))
@@ -46,9 +47,11 @@ class Ball(GameSprite):
         if sprite.collide_rect(self,platform_l) or sprite.collide_rect(self,platform_r):
             self.speed_x *= -1
         if self.rect.x > 700 or self.rect.x < 0:
+            global finished
             finished = True
-            font = font.SysFont('Arial', 70)
-            defeat = font.render('Lose', True, (5, 193, 255))
+            font1 = font.SysFont('Arial', 70)
+            defeat = font1.render('Lose', True, (5, 193, 255))
+            window.blit(defeat, (250,250))
         self.reset()
 background = transform.scale(image.load('kosmos.jpg'),(700,500))
 clock = time.Clock()
